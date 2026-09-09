@@ -1,0 +1,139 @@
+{
+  "schemaVersion": 1,
+  "quarterId": "2026-q4",
+  "catalogChecksum": "sha256:e3ad7c573426afc63cafac897c741bdc1da0e30d200aad3fd712bee48546ff3b",
+  "resourceCount": 13,
+  "localResourceCount": 13,
+  "resources": [
+    {
+      "id": "reading-teacher-01",
+      "type": "article",
+      "role": "teacher-reading",
+      "lessonNumber": 1,
+      "url": "/recursos/2026-q4/lecturas/maestros/leccion-01.html",
+      "storage": "local",
+      "checksum": "sha256:ff0032ae8ec9b24dd8c39c072dd7c911b975bc021845fc8f8c8d33f4048a4f14",
+      "sizeBytes": 11913
+    },
+    {
+      "id": "reading-teacher-02",
+      "type": "article",
+      "role": "teacher-reading",
+      "lessonNumber": 2,
+      "url": "/recursos/2026-q4/lecturas/maestros/leccion-02.html",
+      "storage": "local",
+      "checksum": "sha256:eeea2202510e7f43a07c6f42471cfaa2ee0f52805ef42a586986357c909cbcd1",
+      "sizeBytes": 11821
+    },
+    {
+      "id": "reading-teacher-03",
+      "type": "article",
+      "role": "teacher-reading",
+      "lessonNumber": 3,
+      "url": "/recursos/2026-q4/lecturas/maestros/leccion-03.html",
+      "storage": "local",
+      "checksum": "sha256:389eca7fa03bcda89f0ee77ad19d6f1184bd99328811d7e9bea45ea7b41456a6",
+      "sizeBytes": 12506
+    },
+    {
+      "id": "reading-teacher-04",
+      "type": "article",
+      "role": "teacher-reading",
+      "lessonNumber": 4,
+      "url": "/recursos/2026-q4/lecturas/maestros/leccion-04.html",
+      "storage": "local",
+      "checksum": "sha256:006793c2a5a1921b3e38dc312538ff23fd684fd86bee118937775718fc7b5a4f",
+      "sizeBytes": 12610
+    },
+    {
+      "id": "reading-teacher-05",
+      "type": "article",
+      "role": "teacher-reading",
+      "lessonNumber": 5,
+      "url": "/recursos/2026-q4/lecturas/maestros/leccion-05.html",
+      "storage": "local",
+      "checksum": "sha256:4f56b7f1273b1bd7729982629a0268e05cbe76333b567c29430dbec302c05b03",
+      "sizeBytes": 13985
+    },
+    {
+      "id": "reading-teacher-06",
+      "type": "article",
+      "role": "teacher-reading",
+      "lessonNumber": 6,
+      "url": "/recursos/2026-q4/lecturas/maestros/leccion-06.html",
+      "storage": "local",
+      "checksum": "sha256:43aec1b942a6369990021336640faecbc192013c8a3817f11ed293677e520032",
+      "sizeBytes": 13328
+    },
+    {
+      "id": "reading-teacher-07",
+      "type": "article",
+      "role": "teacher-reading",
+      "lessonNumber": 7,
+      "url": "/recursos/2026-q4/lecturas/maestros/leccion-07.html",
+      "storage": "local",
+      "checksum": "sha256:2b792f3a287695521f9950215cad366951be0a344562b747995bc723c7a49c5d",
+      "sizeBytes": 12623
+    },
+    {
+      "id": "reading-teacher-08",
+      "type": "article",
+      "role": "teacher-reading",
+      "lessonNumber": 8,
+      "url": "/recursos/2026-q4/lecturas/maestros/leccion-08.html",
+      "storage": "local",
+      "checksum": "sha256:c05c0d11c5f4bb9b7fd0fb083b359ca8da061545113f4b2e39d1b0eef99d73c5",
+      "sizeBytes": 14368
+    },
+    {
+      "id": "reading-teacher-09",
+      "type": "article",
+      "role": "teacher-reading",
+      "lessonNumber": 9,
+      "url": "/recursos/2026-q4/lecturas/maestros/leccion-09.html",
+      "storage": "local",
+      "checksum": "sha256:2c9a7165153259df1a80f8ad7fd8daadbfb50d7e31821a9f15e6c9938a3dfa5e",
+      "sizeBytes": 13107
+    },
+    {
+      "id": "reading-teacher-10",
+      "type": "article",
+      "role": "teacher-reading",
+      "lessonNumber": 10,
+      "url": "/recursos/2026-q4/lecturas/maestros/leccion-10.html",
+      "storage": "local",
+      "checksum": "sha256:4018b26d8c724f848a0c56b575549b065e199527b04312862cee14d618587797",
+      "sizeBytes": 13191
+    },
+    {
+      "id": "reading-teacher-11",
+      "type": "article",
+      "role": "teacher-reading",
+      "lessonNumber": 11,
+      "url": "/recursos/2026-q4/lecturas/maestros/leccion-11.html",
+      "storage": "local",
+      "checksum": "sha256:1168b1ebd3e59725360bcfaa8ac0c2d9de5dbbe19407231386413c146bfe1d92",
+      "sizeBytes": 13884
+    },
+    {
+      "id": "reading-teacher-12",
+      "type": "article",
+      "role": "teacher-reading",
+      "lessonNumber": 12,
+      "url": "/recursos/2026-q4/lecturas/maestros/leccion-12.html",
+      "storage": "local",
+      "checksum": "sha256:caf548fd82d3492e8164ae86e81a61c8d4fb1c12499edf31831e9592ab39b5b7",
+      "sizeBytes": 13430
+    },
+    {
+      "id": "reading-teacher-13",
+      "type": "article",
+      "role": "teacher-reading",
+      "lessonNumber": 13,
+      "url": "/recursos/2026-q4/lecturas/maestros/leccion-13.html",
+      "storage": "local",
+      "checksum": "sha256:e19099d31218bc0770908aef1a2d67b1334710c910a8ab97464fe26b2bc4fd3a",
+      "sizeBytes": 13918
+    }
+  ]
+}

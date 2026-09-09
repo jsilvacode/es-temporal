@@ -1,0 +1,25 @@
+---
+import Header from "./Header.astro";
+import Sidebar from "./Sidebar.astro";
+import MobileBottomNav from "./MobileBottomNav.astro";
+import Footer from "./Footer.astro";
+
+type Props = {
+  activeSection?: "home" | "lessons" | "resources" | "bible" | "archive";
+  quarterId?: string;
+};
+
+const { activeSection = "home", quarterId } = Astro.props;
+---
+
+<div class="app-shell">
+  <Header activeSection={activeSection} />
+  <div class="layout-frame">
+    <Sidebar activeSection={activeSection} quarterId={quarterId} />
+    <main class="main-content">
+      <slot />
+      <Footer />
+    </main>
+  </div>
+  <MobileBottomNav activeSection={activeSection} quarterId={quarterId} />
+</div>

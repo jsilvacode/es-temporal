@@ -1,0 +1,5 @@
+---
+import QuarterResources from "@components/quarter/QuarterResources.astro";
+import { getQuarter } from "@lib/lessonAdapter";
+---
+<QuarterResources quarter={getQuarter()} pageUrl="/recursos" />

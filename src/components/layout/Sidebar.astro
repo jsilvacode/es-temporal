@@ -1,0 +1,66 @@
+---
+import { quarterNavItems } from "@data/navigation";
+
+type Props = {
+  activeSection?: string;
+  quarterId?: string;
+};
+
+const { activeSection = "home", quarterId } = Astro.props;
+const navItems = quarterNavItems(quarterId);
+const current = (section: string) => (activeSection === section ? "page" : undefined);
+---
+
+<aside class="sidebar" id="sidebar" aria-label="Navegación lateral">
+  <div class="sidebar-brand">
+    <button class="sidebar-close" type="button" id="sidebar-close" aria-label="Cerrar menú">✕</button>
+  </div>
+  <nav>
+    {
+      navItems.map((item) => (
+        <a class="nav-item" href={item.href} target={item.external ? "_blank" : undefined} rel={item.external ? "noopener noreferrer" : undefined} aria-current={!item.external ? current(item.section) : undefined}>
+          <span class="nav-icon" aria-hidden="true">{item.icon}</span>
+          <span>{item.label}</span>
+        </a>
+      ))
+    }
+  </nav>
+
+  <div class="sidebar-covers">
+    <h3 class="sidebar-complementos-heading">Complementos para<br/>tu estudio diario</h3>
+    <a class="sidebar-cover-card" href="https://www.youtube.com/playlist?list=PLn19CCwh0uJwsZM3-89oEGdorLikq9hFS" target="_blank" rel="noopener noreferrer" title="Diálogo Bíblico en YouTube">
+      <span class="sidebar-cover-wrap">
+        <img src="/images/covers/cover-dialogo-biblico.png" alt="Diálogo Bíblico" width="130" height="182" loading="lazy" />
+        <span class="cover-play-icon">
+          <svg viewBox="0 0 24 24" fill="none" width="28" height="28">
+            <circle cx="12" cy="12" r="11" fill="#ff0033" opacity="0.9"/>
+            <polygon points="10,7 10,17 17,12" fill="white"/>
+          </svg>
+        </span>
+      </span>
+      <span class="cover-label">Diálogo Bíblico</span>
+      <span class="cover-sublabel">Resúmenes en video</span>
+    </a>
+    <a class="sidebar-cover-card" href="https://www.santabiblia.cloud" target="_blank" rel="noopener noreferrer" title="Ir a Santa Biblia">
+      <span class="sidebar-cover-wrap">
+        <img src="/images/covers/cover-biblia.png" alt="Santa Biblia" width="130" height="182" loading="lazy" />
+      </span>
+      <span class="cover-label">Santa Biblia</span>
+      <span class="cover-sublabel">Biblia online</span>
+    </a>
+  </div>
+</aside>
+
+<script>
+  function closeSidebar() {
+    document.getElementById("sidebar")?.classList.remove("mobile-open");
+    const btn = document.getElementById("menu-toggle");
+    if (btn) btn.setAttribute("aria-expanded", "false");
+  }
+
+  document.getElementById("sidebar-close")?.addEventListener("click", closeSidebar);
+
+  document.querySelectorAll("#sidebar nav a").forEach(link => {
+    link.addEventListener("click", closeSidebar);
+  });
+</script>

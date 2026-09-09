@@ -1,0 +1,140 @@
+---
+import Analytics from "@vercel/analytics/astro";
+import AppLayout from "./AppLayout.astro";
+import "@styles/globals.css";
+
+type Props = {
+  title?: string;
+  activeSection?: "home" | "lessons" | "resources" | "bible" | "archive";
+  description?: string;
+  image?: string;
+  url?: string;
+  noindex?: boolean;
+  quarterId?: string;
+};
+
+const { title = "Escuela Sabática", activeSection = "home", description, image, url, noindex = false, quarterId } = Astro.props;
+const SITE_URL = "https://escuelasabatica.cl";
+const defaultDesc = "Plataforma de lectura y estudio bíblico de la Escuela Sabática Adventista.";
+const defaultImage = "/images/og-cover.svg";
+const pageDesc = description || defaultDesc;
+const pageImage = image || defaultImage;
+const pageUrl = url ? `${SITE_URL}${url}` : SITE_URL;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={pageDesc} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <link rel="canonical" href={pageUrl} />
+    {noindex && <meta name="robots" content="noindex,nofollow" />}
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={pageDesc} />
+    <meta property="og:image" content={pageImage.startsWith("http") ? pageImage : `${SITE_URL}${pageImage}`} />
+    <meta property="og:image:alt" content={title} />
+    <meta property="og:url" content={pageUrl} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Escuela Sabática" />
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={pageDesc} />
+    <meta name="twitter:image" content={pageImage.startsWith("http") ? pageImage : `${SITE_URL}${pageImage}`} />
+    <Analytics />
+  </head>
+  <body>
+    <AppLayout activeSection={activeSection} quarterId={quarterId}>
+      <slot />
+    </AppLayout>
+    <script is:inline>
+      // Share on long-press / right-click (mobile)
+      (function() {
+        var pressTimer = null;
+        function shareCard(card) {
+          if (!navigator.share) return;
+          var path = card.dataset.shareUrl || "";
+          var absUrl = path.startsWith("http") ? path : location.origin + (path.startsWith("/") ? path : "/" + path);
+          navigator.share({
+            title: card.dataset.shareTitle || "",
+            text: card.dataset.shareText || "",
+            url: absUrl,
+          }).catch(function() {});
+        }
+        document.addEventListener("touchstart", function(e) {
+          var card = e.target.closest("[data-share-url]");
+          if (!card || !navigator.share) return;
+          pressTimer = setTimeout(function() { shareCard(card); }, 600);
+        }, { passive: true });
+        document.addEventListener("touchend", function() {
+          if (pressTimer) { clearTimeout(pressTimer); pressTimer = null; }
+        });
+        document.addEventListener("touchmove", function() {
+          if (pressTimer) { clearTimeout(pressTimer); pressTimer = null; }
+        });
+        document.addEventListener("contextmenu", function(e) {
+          var card = e.target.closest("[data-share-url]");
+          if (!card || !navigator.share) return;
+          e.preventDefault();
+          shareCard(card);
+        });
+      })();
+    </script>
+
+    <script is:inline>
+      (function() {
+        function highlightSection(section) {
+          document.querySelectorAll("#sidebar a, .mobile-bottom-nav a").forEach(a => {
+            const h = a.getAttribute("href") || "";
+            if (a.getAttribute("target")) return;
+            let match = false;
+            if (section === "home" && (h === "/" || /^\/trimestres\/[^/]+\/?$/.test(h))) match = true;
+            if (section === "lessons" && (h.includes("lessons-heading") || h.includes("/lecciones/"))) match = true;
+            if (section === "resources" && (h.endsWith("/recursos") || h.includes("resources-heading"))) match = true;
+            if (match) {
+              a.setAttribute("aria-current", "page");
+            } else {
+              a.removeAttribute("aria-current");
+            }
+          });
+        }
+
+        function updateFromHash() {
+          const hash = window.location.hash.replace("#", "");
+          const map = { "lessons-heading": "lessons", "resources-heading": "resources" };
+          highlightSection(map[hash] || "home");
+        }
+
+        // Determine section from pathname
+        const path = window.location.pathname;
+        if (path === "/recursos" || /^\/trimestres\/[^/]+\/recursos\/?$/.test(path)) {
+          highlightSection("resources");
+        } else if (path.startsWith("/lecciones/") || /^\/trimestres\/[^/]+\/lecciones\//.test(path)) {
+          highlightSection("lessons");
+        } else if (path === "/" || /^\/trimestres\/[^/]+\/?$/.test(path)) {
+          updateFromHash();
+          window.addEventListener("hashchange", updateFromHash);
+
+          const observer = new IntersectionObserver((entries) => {
+            const visible = entries.filter(e => e.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+            if (visible.length > 0 && visible[0].target.id === "lessons-heading") {
+              highlightSection("lessons");
+            } else {
+              const lessonsEl = document.getElementById("lessons-heading");
+              if (window.scrollY < (lessonsEl?.offsetTop || 9999) - 100) {
+                highlightSection("home");
+              }
+            }
+          }, { rootMargin: "-80px 0px -70% 0px" });
+
+          const el = document.getElementById("lessons-heading");
+          if (el) observer.observe(el);
+        }
+      })();
+    </script>
+  </body>
+</html>

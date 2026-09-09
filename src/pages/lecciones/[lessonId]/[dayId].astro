@@ -1,0 +1,11 @@
+---
+import { getLessons, legacyQuarterId } from "@lib/lessonAdapter";
+import { lessonUrl } from "@lib/quarterRoutes";
+export function getStaticPaths() {
+  return getLessons(legacyQuarterId).flatMap(lesson => lesson.days.map(day => ({
+    params: { lessonId: lesson.id, dayId: day.id },
+    props: { destination: lessonUrl(legacyQuarterId, lesson.id, day.id) },
+  })));
+}
+return Astro.redirect(Astro.props.destination, 301);
+---

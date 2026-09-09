@@ -1,0 +1,5 @@
+---
+import QuarterHome from "@components/quarter/QuarterHome.astro";
+import { getQuarter } from "@lib/lessonAdapter";
+---
+<QuarterHome quarter={getQuarter()} pageUrl="/" />
